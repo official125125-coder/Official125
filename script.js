@@ -1,293 +1,161 @@
-/*
-=========================================
-QKW996 LINKS
-=========================================
-*/
+const whatsappLink = "https://wa.link/2j7twc";
 
+const telegramSupportLink = "https://t.me/Qkw_996";
 
-// WHATSAPP
-const whatsappLink =
-    "https://wa.link/2j7twc";
+const telegramChannelLink = "https://t.me/QKWIN996";
 
-
-// TELEGRAM SUPPORT
-const telegramSupportLink =
-    "http://t.me/Qkw_996";
-
-
-// TELEGRAM CHANNEL
-const telegramChannelLink =
-    "https://t.me/QKWIN996";
-
-
-
-/*
-=========================================
-ELEMENTS
-=========================================
-*/
 
 const whatsappButton =
-    document.getElementById(
-        "whatsappButton"
-    );
-
+    document.getElementById("whatsappButton");
 
 const telegramChannelButton =
-    document.getElementById(
-        "telegramChannelButton"
-    );
-
+    document.getElementById("telegramChannelButton");
 
 const modal =
-    document.getElementById(
-        "contactModal"
-    );
-
+    document.getElementById("contactModal");
 
 const modalTitle =
-    document.getElementById(
-        "modalTitle"
-    );
-
+    document.getElementById("modalTitle");
 
 const modalText =
-    document.getElementById(
-        "modalText"
-    );
-
+    document.getElementById("modalText");
 
 const modalWhatsapp =
-    document.getElementById(
-        "modalWhatsapp"
-    );
-
+    document.getElementById("modalWhatsapp");
 
 const modalTelegram =
-    document.getElementById(
-        "modalTelegram"
-    );
-
+    document.getElementById("modalTelegram");
 
 const closeModal =
-    document.getElementById(
-        "closeModal"
-    );
-
+    document.getElementById("closeModal");
 
 const year =
-    document.getElementById(
-        "year"
-    );
+    document.getElementById("year");
 
 
-
-/*
-=========================================
-YEAR
-=========================================
-*/
+/* YEAR */
 
 year.textContent =
     new Date().getFullYear();
 
 
-
-/*
-=========================================
-GROUP CHANNEL - WHATSAPP
-=========================================
-*/
+/* WHATSAPP GROUP */
 
 whatsappButton.addEventListener(
     "click",
     function () {
 
-        openLink(
-            whatsappLink
-        );
+        openLink(whatsappLink);
 
     }
 );
 
 
-
-/*
-=========================================
-GROUP CHANNEL - TELEGRAM CHANNEL
-=========================================
-*/
+/* TELEGRAM CHANNEL */
 
 telegramChannelButton.addEventListener(
     "click",
     function () {
 
-        openLink(
-            telegramChannelLink
-        );
+        openLink(telegramChannelLink);
 
     }
 );
 
 
-
-/*
-=========================================
-GAME CARDS
-=========================================
-*/
+/* GAME LIST */
 
 const gameCards =
-    document.querySelectorAll(
-        ".game-card"
+    document.querySelectorAll(".game-card");
+
+
+gameCards.forEach(function (card) {
+
+    card.addEventListener(
+        "click",
+        function () {
+
+            const gameName =
+                card.dataset.game;
+
+            openGameContact(gameName);
+
+        }
     );
 
-
-gameCards.forEach(
-    function (card) {
-
-        card.addEventListener(
-            "click",
-            function () {
-
-                const gameName =
-                    card.dataset.game;
-
-                openGameContact(
-                    gameName
-                );
-
-            }
-        );
-
-    }
-);
+});
 
 
+/* OPEN GAME CONTACT */
 
-/*
-=========================================
-OPEN GAME POPUP
-=========================================
-*/
-
-function openGameContact(
-    gameName
-) {
+function openGameContact(gameName) {
 
     modal.dataset.game =
         gameName;
 
-
     modalTitle.textContent =
-        gameName +
-        " Support";
-
+        gameName + " Support";
 
     modalText.textContent =
         "Pilih WhatsApp atau Telegram untuk bertanya mengenai " +
         gameName +
         ".";
 
-
-    modal.classList.add(
-        "active"
-    );
-
+    modal.classList.add("active");
 
     document.body.style.overflow =
         "hidden";
-
 }
 
 
-
-/*
-=========================================
-GAME WHATSAPP
-=========================================
-*/
+/* WHATSAPP SUPPORT */
 
 modalWhatsapp.addEventListener(
     "click",
     function () {
 
-        openLink(
-            whatsappLink
-        );
+        openLink(whatsappLink);
 
     }
 );
 
 
-
-/*
-=========================================
-GAME TELEGRAM
-=========================================
-*/
+/* TELEGRAM SUPPORT */
 
 modalTelegram.addEventListener(
     "click",
     function () {
 
-        openLink(
-            telegramSupportLink
-        );
+        openLink(telegramSupportLink);
 
     }
 );
 
 
+/* OPEN LINK */
 
-/*
-=========================================
-OPEN LINK
-=========================================
-*/
-
-function openLink(
-    url
-) {
+function openLink(url) {
 
     window.open(
         url,
         "_blank",
         "noopener,noreferrer"
     );
-
 }
 
 
-
-/*
-=========================================
-CLOSE POPUP
-=========================================
-*/
+/* CLOSE MODAL */
 
 function closeContactModal() {
 
-    modal.classList.remove(
-        "active"
-    );
-
+    modal.classList.remove("active");
 
     document.body.style.overflow =
         "";
 
-
     delete modal.dataset.game;
-
 }
 
-
-
-/*
-=========================================
-CLOSE BUTTON
-=========================================
-*/
 
 closeModal.addEventListener(
     "click",
@@ -299,20 +167,13 @@ closeModal.addEventListener(
 );
 
 
-
-/*
-=========================================
-CLICK OUTSIDE POPUP
-=========================================
-*/
+/* CLICK OUTSIDE MODAL */
 
 modal.addEventListener(
     "click",
     function (event) {
 
-        if (
-            event.target === modal
-        ) {
+        if (event.target === modal) {
 
             closeContactModal();
 
@@ -322,12 +183,7 @@ modal.addEventListener(
 );
 
 
-
-/*
-=========================================
-ESC KEY
-=========================================
-*/
+/* ESC */
 
 document.addEventListener(
     "keydown",
@@ -335,9 +191,7 @@ document.addEventListener(
 
         if (
             event.key === "Escape" &&
-            modal.classList.contains(
-                "active"
-            )
+            modal.classList.contains("active")
         ) {
 
             closeContactModal();
